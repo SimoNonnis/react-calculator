@@ -49,7 +49,7 @@ class Calculator extends Component {
           <div className={styles.row}>
             <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>AC</button>
             <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>CE</button>
-            <button className={`${styles.button} ${styles.empty}`} ></button>
+            <button className={`${styles.button} ${styles.operator}`} >±</button>
             <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>÷</button>
           </div>
           <div className={styles.row}>
