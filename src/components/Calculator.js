@@ -47,34 +47,34 @@ class Calculator extends Component {
         <div className={styles.resultBox}>{this.state.cleanState ? this.state.defaultValue : this.state.result}</div>
         <div className={styles.keysContainer}>
           <div className={styles.row}>
-            <button className={styles.button} onClick={this.reset}>AC</button>
-            <button className={styles.button} onClick={this.reset}>CE</button>
-            <button className={styles.button} ></button>
-            <button className={styles.button} onClick={this.getSymbol}>÷</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>AC</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>CE</button>
+            <button className={`${styles.button} ${styles.empty}`} ></button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>÷</button>
           </div>
           <div className={styles.row}>
             <button className={styles.button} onClick={this.getValue}>7</button>
             <button className={styles.button} onClick={this.getValue}>8</button>
             <button className={styles.button} onClick={this.getValue}>9</button>
-            <button className={styles.button} onClick={this.getSymbol}>x</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>x</button>
           </div>
           <div className={styles.row}>
             <button className={styles.button} onClick={this.getValue}>4</button>
             <button className={styles.button} onClick={this.getValue}>5</button>
             <button className={styles.button} onClick={this.getValue}>6</button>
-            <button className={styles.button} onClick={this.getSymbol}>-</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>-</button>
           </div>
           <div className={styles.row}>
             <button className={styles.button} onClick={this.getValue}>1</button>
             <button className={styles.button} onClick={this.getValue}>2</button>
             <button className={styles.button} onClick={this.getValue}>3</button>
-            <button className={styles.button} onClick={this.getSymbol}>+</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>+</button>
           </div>
           <div className={styles.row}>
             <button className={styles.button} onClick={this.getValue}>0</button>
-            <button className={styles.button} ></button>
+            <button className={`${styles.button} ${styles.empty}`} ></button>
             <button className={styles.button} >.</button>
-            <button className={styles.button} onClick={this.getSymbol}>=</button>
+            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>=</button>
           </div>
 
         </div>

@@ -32,5 +32,15 @@
 }
 
 .button:hover {
-  background-color: orange;
+  background-color: var(--orange);
+}
+
+.operator {
+  background-color: var(--yellow);
+}
+
+.empty,
+.empty:hover {
+  background-color: var(--white);
+  cursor: default;
 }
