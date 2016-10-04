@@ -1,0 +1,36 @@
+@import './css-shared/variables.css';
+
+.container {
+  background-color: var(--white);
+  margin: auto;
+  max-width: 300px;
+  box-shadow: 1px 1px 3px #d3d3d3;
+}
+
+.resultBox {
+  padding: 2em 1em 1em;
+  border-bottom: 1px solid #cecece;
+  text-align: right;
+}
+
+.keysContainer {
+  padding: .5em 1em 1em 1em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 1em;
+  background-color: var(--lightGrey);
+  width: 60px;
+  height: 60px;
+  margin-top: .5em;
+  transition: background-color .25s ease-out;
+}
+
+.button:hover {
+  background-color: orange;
+}
