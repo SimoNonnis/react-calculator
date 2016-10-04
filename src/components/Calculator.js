@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CSSModules from 'react-css-modules';
 
 import styles from './calculator.css';
 
@@ -43,38 +44,38 @@ class Calculator extends Component {
 
   render () {
     return (
-      <div className={styles.container}>
-        <div className={styles.resultBox}>{this.state.cleanState ? this.state.defaultValue : this.state.result}</div>
-        <div className={styles.keysContainer}>
-          <div className={styles.row}>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>AC</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.reset}>CE</button>
-            <button className={`${styles.button} ${styles.operator}`} >±</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>÷</button>
+      <div styleName='container'>
+        <div styleName='resultBox'>{this.state.cleanState ? this.state.defaultValue : this.state.result}</div>
+        <div styleName='keysContainer'>
+          <div styleName='row'>
+            <button styleName='button operator' onClick={this.reset}>AC</button>
+            <button styleName='button operator' onClick={this.reset}>CE</button>
+            <button styleName='button operator' >±</button>
+            <button styleName='button operator' onClick={this.getSymbol}>÷</button>
           </div>
-          <div className={styles.row}>
-            <button className={styles.button} onClick={this.getValue}>7</button>
-            <button className={styles.button} onClick={this.getValue}>8</button>
-            <button className={styles.button} onClick={this.getValue}>9</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>x</button>
+          <div styleName='row'>
+            <button styleName='button' onClick={this.getValue}>7</button>
+            <button styleName='button' onClick={this.getValue}>8</button>
+            <button styleName='button' onClick={this.getValue}>9</button>
+            <button styleName='button operator' onClick={this.getSymbol}>x</button>
           </div>
-          <div className={styles.row}>
-            <button className={styles.button} onClick={this.getValue}>4</button>
-            <button className={styles.button} onClick={this.getValue}>5</button>
-            <button className={styles.button} onClick={this.getValue}>6</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>-</button>
+          <div styleName='row'>
+            <button styleName='button' onClick={this.getValue}>4</button>
+            <button styleName='button' onClick={this.getValue}>5</button>
+            <button styleName='button' onClick={this.getValue}>6</button>
+            <button styleName='button operator' onClick={this.getSymbol}>-</button>
           </div>
-          <div className={styles.row}>
-            <button className={styles.button} onClick={this.getValue}>1</button>
-            <button className={styles.button} onClick={this.getValue}>2</button>
-            <button className={styles.button} onClick={this.getValue}>3</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>+</button>
+          <div styleName='row'>
+            <button styleName='button' onClick={this.getValue}>1</button>
+            <button styleName='button' onClick={this.getValue}>2</button>
+            <button styleName='button' onClick={this.getValue}>3</button>
+            <button styleName='button operator' onClick={this.getSymbol}>+</button>
           </div>
-          <div className={styles.row}>
-            <button className={styles.button} onClick={this.getValue}>0</button>
-            <button className={`${styles.button} ${styles.empty}`} ></button>
-            <button className={styles.button} >.</button>
-            <button className={`${styles.button} ${styles.operator}`} onClick={this.getSymbol}>=</button>
+          <div styleName='row'>
+            <button styleName='button' onClick={this.getValue}>0</button>
+            <button styleName='button empty' ></button>
+            <button styleName='button' >.</button>
+            <button styleName='button operator' onClick={this.getSymbol}>=</button>
           </div>
 
         </div>
@@ -83,4 +84,4 @@ class Calculator extends Component {
   }
 }
 
-export default Calculator;
+export default CSSModules(Calculator, styles, {allowMultiple: true});
