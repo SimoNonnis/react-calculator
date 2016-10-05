@@ -6,25 +6,29 @@ import styles from './calculator.css';
 class Calculator extends Component {
   constructor () {
     super();
-    this.allClear = this.allClear.bind(this);
+    this.allClear   = this.allClear.bind(this);
     this.clearEntry = this.clearEntry.bind(this);
     this.toggleSign = this.toggleSign.bind(this);
     this.displayNum = this.displayNum.bind(this);
     this.decimalDot = this.decimalDot.bind(this);
-    this.operation = this.operation.bind(this);
-    this.calculate = this.calculate.bind(this);
+    this.operation  = this.operation.bind(this);
+    this.calculate  = this.calculate.bind(this);
 
 
     this.state = {
+      operation: '',
       displayVal: '0',
-      calcVals: []
+      preVal: '',
+      lastVal: ''
     }
   }
 
   allClear () {
     this.setState({
+      operation: '',
       displayVal: '0',
-      calcVals: []
+      preVal: '',
+      lastVal: ''
     })
   }
 
@@ -68,6 +72,11 @@ class Calculator extends Component {
           displayVal: number
         })
         break;
+      case '+':
+        this.setState({
+          displayVal: number
+        })
+        break;
       default:
         this.setState({
           displayVal: displayVal + number
@@ -86,13 +95,28 @@ class Calculator extends Component {
   }
 
   operation (e) {
+    const{ displayVal } = this.state;
     const operation = e.target.innerText;
     console.log('Clicked operation: ', operation);
+
+    this.setState({
+      operation: operation,
+      displayVal: operation,
+      prevVal: displayVal
+    })
   }
 
   calculate (e) {
     const calculate = e.target.innerText;
+    const { prevVal, operation, lastVal } = this.state;
+    const result = `${prevVal} ${operation} ${lastVal}`;
     console.log('Clicked calculate: ', calculate);
+    this.setState({
+      operation: '',
+      displayVal: String(result),
+      preVal: '',
+      lastVal: ''
+    })
   }
 
 
