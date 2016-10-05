@@ -7,7 +7,7 @@
   box-shadow: 1px 1px 3px #d3d3d3;
 }
 
-.resultBox {
+.displayValBox {
   padding: 2em 1em 1em;
   border-bottom: 1px solid #cecece;
   text-align: right;
@@ -35,7 +35,7 @@
   background-color: var(--orange);
 }
 
-.operator {
+.operation {
   background-color: var(--yellow);
 }
 

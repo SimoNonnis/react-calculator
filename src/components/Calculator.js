@@ -6,76 +6,160 @@ import styles from './calculator.css';
 class Calculator extends Component {
   constructor () {
     super();
-    this.reset = this.reset.bind(this);
-    this.getValue = this.getValue.bind(this);
-    this.getSymbol = this.getSymbol.bind(this);
+    this.allClear = this.allClear.bind(this);
+    this.clearEntry = this.clearEntry.bind(this);
+    this.toggleSign = this.toggleSign.bind(this);
+    this.displayNum = this.displayNum.bind(this);
+    this.decimalDot = this.decimalDot.bind(this);
+    this.operation = this.operation.bind(this);
+    this.calculate = this.calculate.bind(this);
+
+
     this.state = {
-      cleanState: true,
-      defaultValue: 0,
-      result: [ ]
+      displayVal: '0',
+      calcVals: []
     }
   }
 
-  reset () {
+  allClear () {
     this.setState({
-      cleanState: true,
-      result: [ ]
+      displayVal: '0',
+      calcVals: []
     })
   }
 
-  getValue (e) {
+  clearEntry () {
+    const { displayVal } = this.state;
+
+    if (displayVal.length > 1) {
+      this.setState({
+        displayVal: displayVal.slice(0, displayVal.length -1)
+      })
+    } else {
+      this.setState({
+        displayVal: '0'
+      })
+    }
+  }
+
+  toggleSign () {
+    const { displayVal } = this.state;
+
+    switch (displayVal.charAt(0)) {
+      case '-':
+        this.setState({
+          displayVal: displayVal.slice(1)
+        })
+        break;
+      default:
+        this.setState({
+          displayVal: `-${displayVal}`
+        })
+    }
+  }
+
+  displayNum (e) {
     const number = e.target.innerText;
-    this.setState({
-      cleanState: false,
-      result: this.state.result.concat(number)
-    })
-  }
+    const { displayVal } = this.state;
 
-  getSymbol (e) {
-    const symbol = e.target.innerText;
-    this.calculate(symbol);
-  }
-
-  calculate (symbol) {
-    if (symbol === '+') {
-      console.log('+');
+    switch (displayVal) {
+      case '0':
+        this.setState({
+          displayVal: number
+        })
+        break;
+      default:
+        this.setState({
+          displayVal: displayVal + number
+        })
     }
   }
+
+  decimalDot () {
+    const { displayVal } = this.state;
+
+    if (!displayVal.includes('.')) {
+      this.setState({
+        displayVal: `${displayVal}.`
+      })
+    }
+  }
+
+  operation (e) {
+    const operation = e.target.innerText;
+    console.log('Clicked operation: ', operation);
+  }
+
+  calculate (e) {
+    const calculate = e.target.innerText;
+    console.log('Clicked calculate: ', calculate);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   render () {
+    const { displayVal } = this.state;
+
     return (
       <div styleName='container'>
-        <div styleName='resultBox'>{this.state.cleanState ? this.state.defaultValue : this.state.result}</div>
+        <div styleName='displayValBox'>{displayVal}</div>
         <div styleName='keysContainer'>
           <div styleName='row'>
-            <button styleName='button operator' onClick={this.reset}>AC</button>
-            <button styleName='button operator' onClick={this.reset}>CE</button>
-            <button styleName='button operator' >±</button>
-            <button styleName='button operator' onClick={this.getSymbol}>÷</button>
+            <button styleName='button operation' onClick={this.allClear}>AC</button>
+            <button styleName='button operation' onClick={this.clearEntry}>CE</button>
+            <button styleName='button operation' onClick={this.toggleSign}>±</button>
+            <button
+              styleName='button operation'
+              onClick={this.operation}
+            >/</button>
           </div>
           <div styleName='row'>
-            <button styleName='button' onClick={this.getValue}>7</button>
-            <button styleName='button' onClick={this.getValue}>8</button>
-            <button styleName='button' onClick={this.getValue}>9</button>
-            <button styleName='button operator' onClick={this.getSymbol}>x</button>
+            <button styleName='button' onClick={this.displayNum}>7</button>
+            <button styleName='button' onClick={this.displayNum}>8</button>
+            <button styleName='button' onClick={this.displayNum}>9</button>
+            <button
+              styleName='button operation'
+              onClick={this.operation}
+            >x</button>
           </div>
           <div styleName='row'>
-            <button styleName='button' onClick={this.getValue}>4</button>
-            <button styleName='button' onClick={this.getValue}>5</button>
-            <button styleName='button' onClick={this.getValue}>6</button>
-            <button styleName='button operator' onClick={this.getSymbol}>-</button>
+            <button styleName='button' onClick={this.displayNum}>4</button>
+            <button styleName='button' onClick={this.displayNum}>5</button>
+            <button styleName='button' onClick={this.displayNum}>6</button>
+            <button
+              styleName='button operation'
+              onClick={this.operation}
+            >-</button>
           </div>
           <div styleName='row'>
-            <button styleName='button' onClick={this.getValue}>1</button>
-            <button styleName='button' onClick={this.getValue}>2</button>
-            <button styleName='button' onClick={this.getValue}>3</button>
-            <button styleName='button operator' onClick={this.getSymbol}>+</button>
+            <button styleName='button' onClick={this.displayNum}>1</button>
+            <button styleName='button' onClick={this.displayNum}>2</button>
+            <button styleName='button' onClick={this.displayNum}>3</button>
+            <button
+              styleName='button operation'
+              onClick={this.operation}
+            >+</button>
           </div>
           <div styleName='row'>
-            <button styleName='button' onClick={this.getValue}>0</button>
+            <button styleName='button' onClick={this.displayNum}>0</button>
             <button styleName='button empty' ></button>
-            <button styleName='button' >.</button>
-            <button styleName='button operator' onClick={this.getSymbol}>=</button>
+            <button styleName='button' onClick={this.decimalDot}>.</button>
+            <button
+              styleName='button operation'
+              onClick={this.calculate}
+            >=</button>
           </div>
 
         </div>
@@ -84,4 +168,4 @@ class Calculator extends Component {
   }
 }
 
-export default CSSModules(Calculator, styles, {allowMultiple: true});
+export default CSSModules(Calculator, styles, { allowMultiple: true });
