@@ -18,7 +18,7 @@ class Calculator extends Component {
     this.state = {
       operation: '',
       displayVal: '0',
-      preVal: ''
+      prevVal: ''
     }
   }
 
@@ -26,7 +26,7 @@ class Calculator extends Component {
     this.setState({
       operation: '',
       displayVal: '0',
-      preVal: ''
+      prevVal: ''
     })
   }
 
@@ -88,9 +88,8 @@ class Calculator extends Component {
   }
 
   operation (e) {
-    const { displayVal } = this.state;
     const symbol = e.target.innerText;
-    console.log('Clicked operation: ', symbol);
+    const { displayVal } = this.state;
 
     this.setState({
       operation: symbol,
@@ -101,7 +100,6 @@ class Calculator extends Component {
 
   calculate () {
     const { prevVal, operation, displayVal } = this.state;
-    console.log('Clicked =');
 
     switch (operation) {
       case '/':
@@ -112,13 +110,25 @@ class Calculator extends Component {
         })
         break;
       case 'x':
-
+        this.setState({
+          operation: '',
+          displayVal: Number(prevVal * displayVal),
+          prevVal: displayVal
+        })
         break;
       case '-':
-
+        this.setState({
+          operation: '',
+          displayVal: Number(prevVal - displayVal),
+          prevVal: displayVal
+        })
         break;
       case '+':
-
+        this.setState({
+          operation: '',
+          displayVal: Number(prevVal) + Number(displayVal),
+          prevVal: displayVal
+        })
         break;
       default:
         console.log('Hello');
